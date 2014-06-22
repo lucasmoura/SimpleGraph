@@ -87,16 +87,15 @@ Graph::getVertex(int vertexNumber)
 int
 Graph::addEdge(int from, int to, int cost)
 {
-	std::map<int, Vertex*>::iterator it;
-	it = vertexMap.find(to);
 
-	if(it == vertexMap.end())
+	if(!isVertexInGraph(from))
 		return VERTEX_NOT_FOUND;
 	
-	it = vertexMap.find(from);
-
-	if(it == vertexMap.end())
+	if(!isVertexInGraph(to))
 		return VERTEX_NOT_FOUND;
+
+	std::map<int, Vertex*>::iterator it;
+	it = vertexMap.find(from);
 
 	Vertex *vertex = it->second;
 
@@ -105,9 +104,25 @@ Graph::addEdge(int from, int to, int cost)
 	return EDGE_INSERTED_ON_GRAPH;
 }
 
+bool
+Graph::isVertexInGraph(int vertex)
+{
+	std::map<int, Vertex*>::iterator it;
+
+	it = vertexMap.find(vertex);
+
+	return (it == vertexMap.end())?false:true;
+}
+
 int
 Graph::breadthFirstSearch(int vertexNumber, int vertexToFind)
 {
+	if(!isVertexInGraph(vertexNumber))
+		return VERTEX_NOT_FOUND;
+	
+	if(!isVertexInGraph(vertexToFind))
+		return VERTEX_NOT_FOUND;
+
 	int* allVertex = new int[numVertex+1];
 	std::queue<int> vertexQueue;
 	std::map<int, int>::iterator it;

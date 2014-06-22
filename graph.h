@@ -24,12 +24,14 @@ class Graph
 		Vertex* getVertex(int);
 		int addVertex(int);
 		int addEdge(int, int, int);
+		int depthFirstSearch(int, int);
 		int breadthFirstSearch(int, int);
 
 	private:
 
 		std::map<int, Vertex*> vertexMap;
 		int numVertex;
+		bool isVertexInGraph(int);
 
 };	
 
