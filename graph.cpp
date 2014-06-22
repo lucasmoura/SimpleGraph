@@ -136,12 +136,14 @@ Graph::breadthFirstSearch(int vertexNumber, int vertexToFind)
 	allVertex[vertexNumber] = 1;
 
 	vertexQueue.push(vertexNumber);
-	
+	std::cout<<"Breadth First Search starting from vertex: ";
+
 	while(!vertexQueue.empty())
 	{
 		Vertex *vertex = vertexMap[vertexQueue.front()];
 		vertexQueue.pop();
 		int vertexValue = vertex->getNumber();
+		std::cout<<vertexValue<<" ";
 
 		if(vertexValue == vertexToFind)
 		{

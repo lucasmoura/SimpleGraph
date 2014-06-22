@@ -28,6 +28,8 @@ int main()
 	cout<<"\nSearching for a vertex..."<<endl;
 	int result = graph->breadthFirstSearch(1,5);
 
+	cout<<endl;
+
 	if (!result)
 		cout<<"Vertex found with success"<<endl;
 	else
