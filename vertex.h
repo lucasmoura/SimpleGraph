@@ -13,6 +13,7 @@ class Vertex
 		int getEdgeCost(int);
 		int getNumEdge() const;
 		int getNumber() const;
+		void incEdgeNum();
 		std::map<int, int> edge;
 		
 	private:

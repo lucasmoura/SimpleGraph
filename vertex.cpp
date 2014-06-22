@@ -20,6 +20,12 @@ Vertex::getEdgeCost(int vertexNumber)
 	return it->second;
 }
 
+void
+Vertex::incEdgeNum()
+{
+	numEdges++;
+}	
+
 int
 Vertex::getNumEdge() const
 {

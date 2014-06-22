@@ -100,6 +100,7 @@ Graph::addEdge(int from, int to, int cost)
 	Vertex *vertex = it->second;
 
 	vertex->edge[to] = cost;
+	vertex->incEdgeNum();
 
 	return EDGE_INSERTED_ON_GRAPH;
 }
@@ -141,7 +142,10 @@ Graph::breadthFirstSearch(int vertexNumber, int vertexToFind)
 		int vertexValue = vertex->getNumber();
 
 		if(vertexValue == vertexToFind)
+		{
+			delete [] allVertex;
 			return VERTEX_FOUND;
+		}	
 		
 		allVertex[vertexValue] = 1;
 	
@@ -152,6 +156,8 @@ Graph::breadthFirstSearch(int vertexNumber, int vertexToFind)
 		}
 	}
 
+	delete [] allVertex;
 	return VERTEX_NOT_FOUND;
 }
+
 

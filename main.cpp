@@ -23,12 +23,21 @@ int main()
 	cout<<graph<<endl;
 
 	cout<<"\nSearching for a vertex..."<<endl;
-	int result = graph->breadthFirstSearch(3,1);
+	int result = graph->breadthFirstSearch(1,5);
 
 	if (!result)
 		cout<<"Vertex found with success"<<endl;
 	else
 		cout<<"Vertex not found"<<endl;
+
+	cout<<"\nSearching for a vertex..."<<endl;
+	result = graph->breadthFirstSearch(3,1);
+
+	if (!result)
+		cout<<"Vertex found with success"<<endl;
+	else
+		cout<<"Vertex not found"<<endl;
+
 
 	delete graph;
 
