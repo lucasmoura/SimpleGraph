@@ -1,5 +1,7 @@
 #include "graph.h"
 #include <queue>
+#include <stack>
+#include <iostream>
 
 const int Graph::VERTEX_ALREADY_IN_GRAPH = -1;
 const int Graph::VERTEX_INSERTED_ON_GRAPH = 0;
@@ -128,7 +130,7 @@ Graph::breadthFirstSearch(int vertexNumber, int vertexToFind)
 	std::queue<int> vertexQueue;
 	std::map<int, int>::iterator it;
 
-	for(int i =0; i<numVertex; i++)
+	for(int i =0; i<=numVertex; i++)
 		allVertex[i] = 0;
 
 	allVertex[vertexNumber] = 1;
@@ -160,4 +162,54 @@ Graph::breadthFirstSearch(int vertexNumber, int vertexToFind)
 	return VERTEX_NOT_FOUND;
 }
 
+int
+Graph::depthFirstSearch(int vertexRoot, int vertexToFind)
+{
+	if(!isVertexInGraph(vertexRoot))
+		return VERTEX_NOT_FOUND;
 
+	if(!isVertexInGraph(vertexToFind))
+		return VERTEX_NOT_FOUND;
+
+	std::stack<int> vertexStack;
+	std::map<int, int>::reverse_iterator it;
+	int* allVertex = new int[numVertex+1];
+
+	for(int i =0; i<=numVertex; i++)
+		allVertex[i] = 0;
+
+	vertexStack.push(vertexRoot);
+	allVertex[vertexRoot] = 1;
+
+	std::cout << "Depth first Search starting from vertex: ";
+
+	while(!vertexStack.empty())
+	{
+		Vertex *vertex = vertexMap[vertexStack.top()];
+		vertexStack.pop();
+
+		int vertexNumber = vertex->getNumber();
+		std::cout<<vertexNumber<<" ";
+
+		if(vertexNumber == vertexToFind)
+		{
+			delete [] allVertex;
+			return VERTEX_FOUND;
+		}	
+
+		for(it = vertex->edge.rbegin(); it != vertex->edge.rend(); it++)
+		{
+
+			if(!allVertex[it->first])
+			{
+				allVertex[it->first] = 1;
+				vertexStack.push(it->first);
+			}
+		}	
+
+	}
+	
+	delete [] allVertex;
+	return VERTEX_NOT_FOUND;
+
+}

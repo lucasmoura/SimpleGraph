@@ -11,14 +11,17 @@ int main()
 	graph->addVertex(3);
 	graph->addVertex(4);
 	graph->addVertex(5);
+	graph->addVertex(6);
+	graph->addVertex(7);
 
 	cout<<graph<<endl;
 
 	graph->addEdge(1,2,5);
-	graph->addEdge(2,1,5);
-	graph->addEdge(2,3,4);
-	graph->addEdge(3,4,2);
-	graph->addEdge(4,5,1);
+	graph->addEdge(1,7,5);
+	graph->addEdge(2,3,5);
+	graph->addEdge(2,6,5);
+	graph->addEdge(3,4,5);
+	graph->addEdge(3,5,4);
 
 	cout<<graph<<endl;
 
@@ -31,13 +34,14 @@ int main()
 		cout<<"Vertex not found"<<endl;
 
 	cout<<"\nSearching for a vertex..."<<endl;
-	result = graph->breadthFirstSearch(3,1);
+	result = graph->depthFirstSearch(1,7);
+
+	cout<<endl;
 
 	if (!result)
 		cout<<"Vertex found with success"<<endl;
 	else
 		cout<<"Vertex not found"<<endl;
-
 
 	delete graph;
 
